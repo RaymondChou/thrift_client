@@ -49,8 +49,17 @@ module ThriftHelpers
       @client ||= begin
         connect!
 
-        @client_class.new(
-          @options[:protocol].new(self, *@options[:protocol_extra_params]))
+        if @options[:multiplexed_protocol].nil?
+          @client_class.new(
+              @options[:protocol].new(self, *@options[:protocol_extra_params]))
+        else
+          @client_class.new(
+              Thrift::MultiplexedProtocol.new(
+                  @options[:protocol].new(self, *@options[:protocol_extra_params]),
+                  @options[:multiplexed_protocol]
+              )
+          )
+        end
       end
     end
 

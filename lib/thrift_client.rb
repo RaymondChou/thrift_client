@@ -26,8 +26,9 @@ Valid optional parameters are:
 <tt>:timeout_overrides</tt>:: Specify additional timeouts on a per-method basis, in seconds. Only works with <tt>Thrift::BufferedTransport</tt>.
 <tt>:cached_connections</tt>:: Cache connections between requests. Trades connect() costs for open sockets. Defaults to <tt>false</tt>.
 <tt>:defaults</tt>:: Specify default values to return on a per-method basis, if <tt>:raise</tt> is set to false.
-=end rdoc
+<tt>:multiplexed_protocol</tt>:: Thrift::MultiplexedProtocol.new(protocol, 'WechatService')
 
+=end rdoc
   def initialize(client_class, servers, options = {})
     super
   end
